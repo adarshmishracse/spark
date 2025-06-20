@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solo Sparks - Your Self-Discovery Journey</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: rgb(94, 94, 235);
+            --secondary: rgb(239, 74, 74);
+            --accent: aqua;
+            --dark: rgb(31, 23, 49);
+            --light: rgb(233, 226, 226);
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: whitesmoke;
+            color: var(--dark);
+            transition: all 0.3s ease;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+        }
+        
+        .spark-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .spark-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+        
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.5s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        
+        .mood-selector input[type="radio"]:checked + label {
+            transform: scale(1.1);
+            box-shadow: 0 0 0 3px rgba(138, 79, 255, 0.3);
+        }
+        
+        .quest-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(138, 79, 255, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(138, 79, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(138, 79, 255, 0); }
+        }
+        
+        .floating-btn {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+<body>
+  
+    <nav class="gradient-bg text-white p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-6">
+                <i class="fas fa-sparkles text-2xl"></i>
+                <h1 class="text-2xl font-bold">Solo Sparks</h1>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="points-display" class="flex items-center space-x-1 bg-white text-purple-700 px-3 py-1 rounded-full font-semibold">
+                    <i class="fas fa-bolt text-yellow-400"></i>
+                    <span id="points-count">150</span>
+                </button>
+                <button class="w-10 h-10 rounded-full bg-white text-purple-900 flex items-center justify-center">
+                    <i class="fas fa-user"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto px-4 py-8">
+       
+        <section class="mb-8">
+            <div class="spark-card p-6">
+                <h2 class="text-xl font-bold mb-4 flex items-center">
+                    <i class="fas fa-smile-beam text-purple-500 mr-2"></i>
+                    How are you feeling today?
+                </h2>
+                <div class="mood-selector grid grid-cols-5 gap-2">
+                    <input type="radio" name="mood" id="mood-1" class="hidden" checked>
+                    <label for="mood-1" class="flex flex-col items-center p-2 rounded-lg cursor-pointer transition-all">
+                        <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-red-500 mb-1">
+                            <i class="fas fa-angry text-2xl"></i>
+                        </div>
+                        <span class="text-xs">Angry</span>
+                    </label>
+                    
+                    <input type="radio" name="mood" id="mood-2" class="hidden">
+                    <label for="mood-2" class="flex flex-col items-center p-2 rounded-lg cursor-pointer transition-all">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-500 mb-1">
+                            <i class="fas fa-sad-tear text-2xl"></i>
+                        </div>
+                        <span class="text-xs">Sad</span>
+                    </label>
+                    
+                    <input type="radio" name="mood" id="mood-3" class="hidden">
+                    <label for="mood-3" class="flex flex-col items-center p-2 rounded-lg cursor-pointer transition-all">
+                        <div class="w-12 h-12 bg-yellow-100 rounded-full flex items-center justify-center text-yellow-500 mb-1">
+                            <i class="fas fa-meh text-2xl"></i>
+                        </div>
+                        <span class="text-xs">Neutral</span>
+                    </label>
+                    
+                    <input type="radio" name="mood" id="mood-4" class="hidden">
+                    <label for="mood-4" class="flex flex-col items-center p-2 rounded-lg cursor-pointer transition-all">
+                        <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-500 mb-1">
+                            <i class="fas fa-smile text-2xl"></i>
+                        </div>
+                        <span class="text-xs">Happy</span>
+                    </label>
+                    
+                    <input type="radio" name="mood" id="mood-5" class="hidden">
+                    <label for="mood-5" class="flex flex-col items-center p-2 rounded-lg cursor-pointer transition-all">
+                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center text-purple-500 mb-1">
+                            <i class="fas fa-grin-stars text-2xl"></i>
+                        </div>
+                        <span class="text-xs">Excited</span>
+                    </label>
+                </div>
+                <div class="mt-4">
+                    <textarea class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" placeholder="Add a note about your current state (optional)"></textarea>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="mb-8">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold flex items-center">
+                    <i class="fas fa-quest text-purple-500 mr-2"></i>
+                    Today's Spark Quest
+                </h2>
+                <span class="text-sm text-gray-500">Daily • 50 points</span>
+            </div>
+            
+            <div class="spark-card p-6 quest-animation relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-16 h-16 bg-purple-500 transform translate-x-8 -translate-y-8 rotate-45"></div>
+                <div class="relative z-10">
+                    <h3 class="text-lg font-bold mb-2">Sunset Reflection</h3>
+                    <p class="text-gray-600 mb-4">Find a quiet spot to watch the sunset. Reflect on three things you're grateful for today.</p>
+                    <div class="flex items-center text-sm text-gray-500 mb-4">
+                        <i class="fas fa-clock mr-1"></i>
+                        <span>15-30 minutes</span>
+                        <i class="fas fa-heart ml-3 mr-1"></i>
+                        <span>Self-love</span>
+                    </div>
+                    <div class="flex space-x-3">
+                        <button class="bg-purple-100 text-purple-700 px-4 py-2 rounded-lg font-medium flex items-center">
+                            <i class="fas fa-info-circle mr-2"></i> Details
+                        </button>
+                        <button id="start-quest" class="gradient-bg text-white px-4 py-2 rounded-lg font-medium flex items-center">
+                            <i class="fas fa-play mr-2"></i> Start Quest
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+      
+        <section class="mb-8 hidden" id="quest-in-progress">
+            <div class="spark-card p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-bold">Quest in Progress</h2>
+                    <div class="flex items-center text-purple-600">
+                        <i class="fas fa-bolt mr-1"></i>
+                        <span>50 points</span>
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <h3 class="font-medium mb-2">Sunset Reflection</h3>
+                    <p class="text-gray-600 mb-4">Find a quiet spot to watch the sunset. Reflect on three things you're grateful for today.</p>
+                    
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2">Your Reflection</label>
+                        <textarea class="w-full p-3 border border-gray-200 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" rows="4" placeholder="Write your thoughts here..."></textarea>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2">Add Photo (Optional)</label>
+                        <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center cursor-pointer hover:bg-gray-50 transition">
+                            <i class="fas fa-camera text-gray-400 text-2xl mb-2"></i>
+                            <p class="text-gray-500">Tap to add a photo</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label class="block text-gray-700 mb-2">Audio Reflection (Optional)</label>
+                        <div class="flex items-center justify-center bg-gray-100 rounded-lg p-4 cursor-pointer hover:bg-gray-200 transition">
+                            <i class="fas fa-microphone text-purple-500 text-2xl mr-3"></i>
+                            <div class="flex-1">
+                                <div class="h-2 bg-gray-300 rounded-full mb-1"></div>
+                                <div class="h-2 bg-gray-300 rounded-full mb-1 w-3/4"></div>
+                                <div class="h-2 bg-gray-300 rounded-full w-1/2"></div>
+                            </div>
+                            <span class="ml-3 text-gray-500">0:00</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <button id="complete-quest" class="w-full gradient-bg text-white py-3 rounded-lg font-medium">
+                    Complete Quest
+                </button>
+            </div>
+        </section>
+
+     
+        <section class="mb-8">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold flex items-center">
+                    <i class="fas fa-calendar-week text-purple-500 mr-2"></i>
+                    Weekly Challenges
+                </h2>
+                <span class="text-sm text-gray-500">2/3 completed</span>
+            </div>
+            
+            <div class="grid gap-4">
+                <div class="spark-card p-4 flex items-center">
+                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-500 mr-4">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-medium">Digital Detox</h3>
+                        <p class="text-sm text-gray-500">Spend 2 hours without screens</p>
+                    </div>
+                    <div class="text-purple-600 font-medium">+100</div>
+                </div>
+                
+                <div class="spark-card p-4 flex items-center">
+                    <div class="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-500 mr-4">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-medium">Journal Journey</h3>
+                        <p class="text-sm text-gray-500">Write journal entries for 3 days</p>
+                    </div>
+                    <div class="text-purple-600 font-medium">+150</div>
+                </div>
+                
+                <div class="spark-card p-4 flex items-center opacity-50">
+                    <div class="w-12 h-12 bg-gray-200 rounded-full flex items-center justify-center text-gray-500 mr-4">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h3 class="font-medium">Kindness Boost</h3>
+                        <p class="text-sm text-gray-500">Complete 3 acts of kindness</p>
+                    </div>
+                    <div class="text-purple-600 font-medium">+200</div>
+                </div>
+            </div>
+        </section>
+
+       
+        <section class="mb-8">
+            <h2 class="text-xl font-bold mb-4 flex items-center">
+                <i class="fas fa-bolt text-yellow-500 mr-2"></i>
+                Your Spark Points
+            </h2>
+            
+            <div class="spark-card p-6">
+                <div class="flex justify-center mb-6">
+                    <div class="relative w-40 h-40">
+                        <svg class="w-full h-full" viewBox="0 0 100 100">
+                            <circle class="text-gray-200" stroke-width="8" stroke="currentColor" fill="transparent" r="40" cx="50" cy="50" />
+                            <circle class="text-yellow-400 progress-ring__circle" stroke-width="8" stroke-linecap="round" stroke="currentColor" fill="transparent" r="40" cx="50" cy="50" stroke-dasharray="251.2" stroke-dashoffset="75.36" />
+                        </svg>
+                        <div class="absolute inset-0 flex flex-col items-center justify-center">
+                            <span class="text-3xl font-bold text-yellow-500">150</span>
+                            <span class="text-xs text-gray-500">Spark Points</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-purple-50 p-3 rounded-lg">
+                        <div class="text-purple-700 font-medium flex items-center justify-between mb-1">
+                            <span>Earned</span>
+                            <span>500</span>
+                        </div>
+                        <div class="h-2 bg-purple-200 rounded-full">
+                            <div class="h-2 bg-purple-500 rounded-full" style="width: 50%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-yellow-50 p-3 rounded-lg">
+                        <div class="text-yellow-700 font-medium flex items-center justify-between mb-1">
+                            <span>Redeemed</span>
+                            <span>150</span>
+                        </div>
+                        <div class="h-2 bg-yellow-200 rounded-full">
+                            <div class="h-2 bg-yellow-500 rounded-full" style="width: 25%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+      
+        <section>
+            <h2 class="text-xl font-bold mb-4 flex items-center">
+                <i class="fas fa-gift text-purple-500 mr-2"></i>
+                Rewards Store
+            </h2>
+            
+            <div class="grid grid-cols-2 gap-4">
+                <div class="spark-card p-4 text-center">
+                    <div class="w-16 h-16 gradient-bg rounded-full flex items-center justify-center text-white text-2xl mx-auto mb-3">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3 class="font-bold mb-1">Profile Boost</h3>
+                    <p class="text-sm text-gray-500 mb-2">Increase visibility for 24 hours</p>
+                    <button class="gradient-bg text-white text-sm px-3 py-1 rounded-full font-medium">
+                        100 points
+                    </button>
+                </div>
+                
+                <div class="spark-card p-4 text-center">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-blue-500 text-2xl mx-auto mb-3">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="font-bold mb-1">Exclusive Prompt</h3>
+                    <p class="text-sm text-gray-500 mb-2">Personalized reflection guide</p>
+                    <button class="gradient-bg text-white text-sm px-3 py-1 rounded-full font-medium">
+                        150 points
+                    </button>
+                </div>
+                
+                <div class="spark-card p-4 text-center">
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-green-500 text-2xl mx-auto mb-3">
+                        <i class="fas fa-lock-open"></i>
+                    </div>
+                    <h3 class="font-bold mb-1">Hidden Content</h3>
+                    <p class="text-sm text-gray-500 mb-2">Access special self-discovery content</p>
+                    <button class="gradient-bg text-white text-sm px-3 py-1 rounded-full font-medium">
+                        200 points
+                    </button>
+                </div>
+                
+                <div class="spark-card p-4 text-center">
+                    <div class="w-16 h-16 bg-pink-100 rounded-full flex items-center justify-center text-pink-500 text-2xl mx-auto mb-3">
+                        <i class="fas fa-question"></i>
+                    </div>
+                    <h3 class="font-bold mb-1">Surprise Token</h3>
+                    <p class="text-sm text-gray-500 mb-2">Mystery reward</p>
+                    <button class="gradient-bg text-white text-sm px-3 py-1 rounded-full font-medium">
+                        150 points
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <div class="fixed bottom-0 left-0 right-0 bg-white shadow-lg border-t border-gray-200">
+        <div class="container mx-auto flex justify-around py-3">
+            <button class="flex flex-col items-center text-purple-600">
+                <i class="fas fa-home text-xl"></i>
+                <span class="text-xs mt-1">Home</span>
+            </button>
+            <button class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-q text-xl"></i>
+                <span class="text-xs mt-1">Quests</span>
+            </button>
+            <button class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-chart-line text-xl"></i>
+                <span class="text-xs mt-1">Progress</span>
+            </button>
+            <button class="flex flex-col items-center text-gray-500">
+                <i class="fas fa-store text-xl"></i>
+                <span class="text-xs mt-1">Rewards</span>
+            </button>
+        </div>
+    </div>
+
+    
+    <button class="fixed bottom-20 right-6 w-14 h-14 gradient-bg rounded-full shadow-lg flex items-center justify-center text-white floating-btn">
+        <i class="fas fa-plus text-2xl"></i>
+    </button>
+
+    <script>
+       
+        const startQuestBtn = document.getElementById('start-quest');
+        const questInProgressSection = document.getElementById('quest-in-progress');
+        const completeQuestBtn = document.getElementById('complete-quest');
+        const pointsCount = document.getElementById('points-count');
+        const pointsDisplay = document.getElementById('points-display');
+        
+       
+        let points = 150;
+        
+
+        startQuestBtn.addEventListener('click', () => {
+            questInProgressSection.classList.remove('hidden');
+            startQuestBtn.textContent = 'Continue Quest';
+            startQuestBtn.innerHTML = '<i class="fas fa-sync-alt mr-2"></i> Continue Quest';
+            
+          
+            questInProgressSection.scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        completeQuestBtn.addEventListener('click', () => {
+           
+            points += 50;
+            pointsCount.textContent = points;
+         
+            pointsDisplay.classList.add('animate-pulse');
+            setTimeout(() => {
+                pointsDisplay.classList.remove('animate-pulse');
+            }, 1000);
+            
+          
+            questInProgressSection.classList.add('hidden');
+            
+           
+            startQuestBtn.textContent = 'Completed!';
+            startQuestBtn.innerHTML = '<i class="fas fa-check-circle mr-2"></i> Completed!';
+            startQuestBtn.classList.remove('gradient-bg');
+            startQuestBtn.classList.add('bg-green-100', 'text-green-700');
+            startQuestBtn.disabled = true;
+            
+          
+            alert('Quest completed! You earned 50 Spark Points!');
+        });
+        
+       
+        const moodInputs = document.querySelectorAll('.mood-selector input');
+        moodInputs.forEach(input => {
+            input.addEventListener('change', (e) => {
+                const allLabels = document.querySelectorAll('.mood-selector label');
+                allLabels.forEach(label => {
+                    label.classList.remove('bg-purple-50');
+                });
+                
+                if (e.target.checked) {
+                    e.target.nextElementSibling.classList.add('bg-purple-50');
+                }
+            });
+        });
+        
+       
+        document.querySelector('.mood-selector input:checked').nextElementSibling.classList.add('bg-purple-50');
+        
+       
+        pointsDisplay.addEventListener('mouseenter', () => {
+            pointsDisplay.classList.add('ring-2', 'ring-yellow-400');
+        });
+        
+        pointsDisplay.addEventListener('mouseleave', () => {
+            pointsDisplay.classList.remove('ring-2', 'ring-yellow-400');
+        });
+    </script>
+</body>
+</html>
